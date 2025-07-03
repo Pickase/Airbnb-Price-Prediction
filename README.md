@@ -70,5 +70,3 @@ The project follows a standard machine learning pipeline:
 * The `log_price` distribution showed a normal distribution, indicating predictable pricing.
 * The chosen regression model effectively predicts Airbnb listing prices based on the engineered features.
 * Key factors influencing pricing were identified, providing actionable insights for hosts to optimize their listings.
-
-## Project Structure
