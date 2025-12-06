@@ -1,11 +1,11 @@
 # Airbnb Price Prediction
 
-This project predicts the estimated price of an Airbnb listing based on key property and location features.  
+This project predicts the estimated price of an Airbnb listing based on key property and location features.
 It uses a machine-learning pipeline trained on a processed dataset containing thousands of listings across multiple cities.
 
 A working version of the project is deployed on Streamlit:
 
-**Live Demo:**  
+**Live Demo:**
 https://airbnb-price-prediction-5393yqisxazm7sns7ykknz.streamlit.app/?theme=dark
 
 ---
@@ -29,11 +29,11 @@ The goal of this project is to build an end-to-end machine-learning system that:
 - Efficient training on large-scale Airbnb datasets.
 - Produces stable and high-quality predictions.
 - Includes an end-to-end pipeline:
-  - Data preprocessing  
-  - Feature extraction  
-  - Model training  
-  - Evaluation  
-  - Real-time prediction API  
+  - Data preprocessing
+  - Feature extraction
+  - Model training
+  - Evaluation
+  - Real-time prediction API
 
 ---
 
@@ -41,9 +41,9 @@ The goal of this project is to build an end-to-end machine-learning system that:
 
 Evaluation metrics (on test data):
 
-- **Mean Absolute Error (MAE):** 0.0478  
-- **Root Mean Squared Error (RMSE):** 0.1465  
-- **R² Score:** 0.9582  
+- **Mean Absolute Error (MAE):** 0.0478
+- **Root Mean Squared Error (RMSE):** 0.1465
+- **R² Score:** 0.9582
 
 These values indicate that the model has a strong ability to estimate log-prices with high accuracy.
 
@@ -87,7 +87,7 @@ venv\Scripts\activate # Windows
 pip install -r requirements.txt
 
 
-### 3. Prepare data  
+### 3. Prepare data
 If raw data is stored in a Drive link, ensure `TRAIN_PATH` and `TEST_PATH` are correctly set in `src/config.py`.
 
 Then run:
@@ -144,8 +144,5 @@ You can interact with the model, enter property details, and instantly receive a
 
 ## Conclusion
 
-This project demonstrates a complete machine-learning pipeline, from preprocessing large Airbnb datasets to deploying a production-ready prediction app.  
+This project demonstrates a complete machine-learning pipeline, from preprocessing large Airbnb datasets to deploying a production-ready prediction app.
 All steps—cleaning, modeling, evaluation, and deployment—are automated and reproducible.
-
-
-
