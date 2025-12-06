@@ -12,44 +12,37 @@ from src.predict import predict_price
 # UI CONFIGURATION
 # ==========================
 
-st.set_page_config(
-    page_title="Airbnb Price Prediction",
-    layout="centered",
-)
+# --- REAL THEME SWITCHER (WORKING, NO CSS HACK) ---
+if "theme" not in st.session_state:
+    st.session_state["theme"] = "light"
 
-# Custom theme toggle
-theme = st.radio("Theme:", ["Light", "Dark"], horizontal=True)
+theme_choice = st.radio("Theme:", ["Light", "Dark"], horizontal=True)
 
-if theme == "Dark":
-    st.markdown(
-        """
-        <style>
-        body {
-            background-color: #0E1117;
-            color: white;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+if theme_choice.lower() != st.session_state["theme"]:
+    st.session_state["theme"] = theme_choice.lower()
+    st.experimental_set_query_params(theme=st.session_state["theme"])
+    st.rerun()
+
+# Apply theme
+if st.session_state["theme"] == "dark":
+    st.markdown("""
+    <style>
+        .stApp { background-color: #0E1117; color: white; }
+    </style>
+    """, unsafe_allow_html=True)
 else:
-    st.markdown(
-        """
-        <style>
-        body {
-            background-color: white;
-            color: black;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <style>
+        .stApp { background-color: white; color: black; }
+    </style>
+    """, unsafe_allow_html=True)
+
 
 # ==========================
 # HEADER
 # ==========================
 
-st.title("🏠 Airbnb Price Prediction App")
+st.title("Airbnb Price Prediction App")
 st.write("Fill the details below and the model will predict the estimated price.")
 
 # ==========================
