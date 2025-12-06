@@ -12,7 +12,11 @@ from src.predict import predict_price
 # UI CONFIGURATION
 # ==========================
 
-# --- REAL THEME SWITCHER (WORKING, NO CSS HACK) ---
+
+# ---------------------------
+# REAL THEME SWITCHER
+# ---------------------------
+
 if "theme" not in st.session_state:
     st.session_state["theme"] = "light"
 
@@ -20,20 +24,31 @@ theme_choice = st.radio("Theme:", ["Light", "Dark"], horizontal=True)
 
 if theme_choice.lower() != st.session_state["theme"]:
     st.session_state["theme"] = theme_choice.lower()
-    st.experimental_set_query_params(theme=st.session_state["theme"])
     st.rerun()
 
-# Apply theme
+# ---------------------------
+# APPLY CSS BASED ON THEME
+# ---------------------------
+
 if st.session_state["theme"] == "dark":
     st.markdown("""
     <style>
-        .stApp { background-color: #0E1117; color: white; }
+        .stApp { background-color: #0E1117 !important; color: white !important; }
+        .stSelectbox label, .stNumberInput label, .stTextInput label { color: white !important; }
+        .stRadio label { color: white !important; }
+        .stMarkdown, .stTitle, .stHeader { color: white !important; }
+        div[data-baseweb="select"] > div { color: white !important; }
     </style>
     """, unsafe_allow_html=True)
-else:
+
+else:  # LIGHT MODE
     st.markdown("""
     <style>
-        .stApp { background-color: white; color: black; }
+        .stApp { background-color: white !important; color: black !important; }
+        .stSelectbox label, .stNumberInput label, .stTextInput label { color: black !important; }
+        .stRadio label { color: black !important; }
+        .stMarkdown, .stTitle, .stHeader { color: black !important; }
+        div[data-baseweb="select"] > div { color: black !important; }
     </style>
     """, unsafe_allow_html=True)
 
