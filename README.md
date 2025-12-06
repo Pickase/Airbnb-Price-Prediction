@@ -47,38 +47,29 @@ Evaluation metrics (on test data):
 
 These values indicate that the model has a strong ability to estimate log-prices with high accuracy.
 
----
 
 airbnb-price-prediction/
-│
-├── app/
-│ └── app.py
-│
-├── data/
-│ ├── processed/
-│ │ ├── train.csv
-│ │ └── test.csv
-│ └── raw/
-│ └── (optional if using Google Drive)
-│
-├── models/
-│ └── final_catboost_model.cbm (ignored in GitHub due to size)
-│
-├── src/
-│ ├── init.py
-│ ├── config.py
-│ ├── data_prep.py
-│ ├── features.py
-│ ├── pipelines.py
-│ ├── train.py
-│ ├── evaluate.py
-│ └── predict.py
-│
-├── requirements.txt
-└── README.md
+|-- app/
+|   |-- app.py
+|-- data/
+|   |-- processed/
+|   |   |-- train.csv
+|   |   |-- test.csv
+|   |-- raw/ (optional if using Google Drive)
+|-- models/
+|   |-- final_catboost_model.cbm (ignored in GitHub due to size)
+|-- src/
+|   |-- __init__.py
+|   |-- config.py
+|   |-- data_prep.py
+|   |-- features.py
+|   |-- pipelines.py
+|   |-- train.py
+|-- evaluate.py
+|-- predict.py
+|-- requirements.txt
+|-- README.md
 
-
----
 
 ## How to Run the Project Locally
 
@@ -153,4 +144,5 @@ You can interact with the model, enter property details, and instantly receive a
 
 This project demonstrates a complete machine-learning pipeline, from preprocessing large Airbnb datasets to deploying a production-ready prediction app.  
 All steps—cleaning, modeling, evaluation, and deployment—are automated and reproducible.
+
 
