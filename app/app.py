@@ -44,7 +44,12 @@ with st.form("prediction_form"):
         beds = st.number_input("Beds", 0, 20)
 
     with col2:
-        bedrooms = st.number_input("Bedrooms", 0, 10)
+        bathrooms = st.number_input(
+    "Bathrooms",
+    min_value=0,
+    max_value=10,
+    step=1
+)
         room_type = st.selectbox("Room Type", room_types)
         neighbourhood = st.selectbox("Neighbourhood", neighbourhoods)
 
