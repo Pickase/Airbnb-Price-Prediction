@@ -69,7 +69,7 @@ if submitted:
         price = predict_price(inputs)
         price_inr = round(price, 2)
 
-        st.success(f"Estimated Price: ₹{price_inr}")
+        st.success(f"Estimated Price: ${price}")
 
     except Exception as e:
         st.error("Prediction failed. Please check logs.")
