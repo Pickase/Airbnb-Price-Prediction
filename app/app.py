@@ -32,24 +32,20 @@ neighbourhoods = ['16th Street Heights', 'Adams Morgan', 'Alamo Square', 'Albany
 # ==========================
 # INPUT FORM
 # ==========================
-
 with st.form("prediction_form"):
     st.subheader("Enter Listing Details")
 
     col1, col2 = st.columns(2)
 
+    # Left column inputs
     with col1:
-        accommodates = st.number_input("Accommodates", 1, 20)
-        bathrooms = st.number_input("Bathrooms", 0, 10, step=0.5)
-        beds = st.number_input("Beds", 0, 20)
+        accommodates = st.number_input("Accommodates", min_value=1, max_value=20, step=1)
+        bathrooms = st.number_input("Bathrooms", min_value=0, max_value=10, step=1)
+        beds = st.number_input("Beds", min_value=0, max_value=20, step=1)
 
+    # Right column inputs
     with col2:
-        bedrooms = st.number_input(
-    "Bedrooms",
-    min_value=0,
-    max_value=10,
-    step=1
-)
+        bedrooms = st.number_input("Bedrooms", min_value=0, max_value=10, step=1)
         room_type = st.selectbox("Room Type", room_types)
         neighbourhood = st.selectbox("Neighbourhood", neighbourhoods)
 
