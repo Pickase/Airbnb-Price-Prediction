@@ -49,32 +49,33 @@ These values indicate that the model has a strong ability to estimate log-prices
 
 ---
 
-## Project Structure
-
 airbnb-price-prediction/
 │
 ├── app/
-│ └── app.py # Streamlit application
+│ └── app.py
 │
 ├── data/
-│ ├── processed/ # Processed training and test datasets
-│ └── raw/ # Raw data (optional if using external storage)
+│ ├── processed/
+│ │ ├── train.csv
+│ │ └── test.csv
+│ └── raw/
+│ └── (optional if using Google Drive)
 │
 ├── models/
-│ └── final_catboost_model.cbm # Trained model (ignored in GitHub due to size)
+│ └── final_catboost_model.cbm (ignored in GitHub due to size)
 │
 ├── src/
 │ ├── init.py
-│ ├── config.py # File paths and constants
-│ ├── data_prep.py # Preprocessing script
-│ ├── features.py # Feature processing helpers
-│ ├── pipelines.py # Model and pipeline definitions
-│ ├── train.py # Model training script
-│ ├── evaluate.py # Evaluation script
-│ └── predict.py # Prediction logic for Streamlit
+│ ├── config.py
+│ ├── data_prep.py
+│ ├── features.py
+│ ├── pipelines.py
+│ ├── train.py
+│ ├── evaluate.py
+│ └── predict.py
 │
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
+├── requirements.txt
+└── README.md
 
 
 ---
@@ -152,3 +153,4 @@ You can interact with the model, enter property details, and instantly receive a
 
 This project demonstrates a complete machine-learning pipeline, from preprocessing large Airbnb datasets to deploying a production-ready prediction app.  
 All steps—cleaning, modeling, evaluation, and deployment—are automated and reproducible.
+
