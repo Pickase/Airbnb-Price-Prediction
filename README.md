@@ -1,72 +1,154 @@
-# Airbnb Price Prediction and Insights
+# Airbnb Price Prediction
+
+This project predicts the estimated price of an Airbnb listing based on key property and location features.  
+It uses a machine-learning pipeline trained on a processed dataset containing thousands of listings across multiple cities.
+
+A working version of the project is deployed on Streamlit:
+
+**Live Demo:**  
+https://airbnb-price-prediction-5393yqisxazm7sns7ykknz.streamlit.app/?theme=dark
+
+---
 
 ## Project Overview
 
-This project focuses on building a machine learning model to predict Airbnb listing prices. By analyzing various features such as property type, room type, location, amenities, and host characteristics, this model aims to provide actionable insights for Airbnb hosts to optimize their listing prices and for Airbnb to refine its pricing recommendations.
+The goal of this project is to build an end-to-end machine-learning system that:
 
-## Problem Statement
+1. Loads and preprocesses large Airbnb listing datasets.
+2. Handles numerical and categorical features efficiently.
+3. Trains a CatBoost regression model for accurate price prediction.
+4. Provides a clean, user-friendly Streamlit interface for real-time predictions.
+5. Deploys the working application online for public use.
 
-The primary objective is to develop a regression model that accurately predicts the price of an Airbnb listing. The insights derived will help hosts understand key price drivers, enabling data-driven decisions, and assist Airbnb in improving host and guest satisfaction.
+---
 
-## Dataset
+## Features of the Model
 
-The dataset used for this project is `Airbnb_data.xlsx`. It contains comprehensive information on Airbnb listings, including:
-* `log_price`: Logarithm of the listing price (target variable).
-* `property_type`: Type of property (e.g., Apartment, House).
-* `room_type`: Type of room (e.g., Entire home/apt, Private room).
-* `accommodates`: Number of guests the listing accommodates.
-* `bathrooms`: Number of bathrooms.
-* `bed_type`: Type of bed.
-* `cancellation_policy`: Cancellation policy.
-* `cleaning_fee`: Whether a cleaning fee is charged.
-* `city`: City where the listing is located.
-* `amenities`: List of amenities offered.
-* `host_has_profile_pic`: Whether the host has a profile picture.
-* `host_identity_verified`: Whether the host's identity is verified.
-* `host_response_rate`: Host's response rate.
-* `number_of_reviews`: Total number of reviews.
-* `review_scores_rating`: Average review score.
-* `bedrooms`: Number of bedrooms.
-* `beds`: Number of beds.
-* And other relevant features like `latitude`, `longitude`, `description`, `first_review`, `last_review`, `host_since`, `name`, `neighbourhood`, `thumbnail_url`, and `zipcode`.
+- Handles both numerical and categorical features.
+- Automatically encodes categorical variables.
+- Efficient training on large-scale Airbnb datasets.
+- Produces stable and high-quality predictions.
+- Includes an end-to-end pipeline:
+  - Data preprocessing  
+  - Feature extraction  
+  - Model training  
+  - Evaluation  
+  - Real-time prediction API  
 
-## Methodology
+---
 
-The project follows a standard machine learning pipeline:
+## Model Performance
 
-1.  **Data Exploration and Cleaning:**
-    * Initial inspection of dataset shape and information.
-    * Handling of missing values (e.g., `log_price`, `bathrooms`, `beds`, `host_response_rate`, `bedrooms`, `review_scores_rating`, `number_of_reviews`, `amenities`).
-    * Feature engineering: Created `amenities_count` and `host_years` from existing features.
-    * Conversion of categorical boolean-like features (`cleaning_fee`, `host_has_profile_pic`, `host_identity_verified`, `instant_bookable`) to numerical representations.
-    * Dropping irrelevant columns (`amenities`, `first_review`, `last_review`, `host_since`, `zipcode`, `thumbnail_url`, `description`).
+Evaluation metrics (on test data):
 
-2.  **Exploratory Data Analysis (EDA):**
-    * Visualizations (e.g., histogram of `log_price`) to understand data distributions and relationships.
-    * Insights derived from visualizations to guide feature selection and modeling.
+- **Mean Absolute Error (MAE):** 0.0478  
+- **Root Mean Squared Error (RMSE):** 0.1465  
+- **R² Score:** 0.9582  
 
-3.  **Preprocessing:**
-    * Categorical features were identified for one-hot encoding.
-    * Numerical features were identified for scaling.
-    * `ColumnTransformer` and `Pipeline` were used to streamline preprocessing steps.
+These values indicate that the model has a strong ability to estimate log-prices with high accuracy.
 
-4.  **Model Development:**
-    * The dataset was split into training and testing sets to prevent overfitting.
-    * Multiple regression models were explored and evaluated, including:
-        * Linear Regression
-        * Ridge Regression
-        * Decision Tree Regressor
-        * Random Forest Regressor
-        * Gradient Boosting Regressor
-        * XGBoost Regressor
-    * Hyperparameter tuning (e.g., using `GridSearchCV`) was performed to optimize model performance.
+---
 
-5.  **Model Evaluation:**
-    * Models were evaluated using metrics such as Mean Squared Error (MSE), R-squared ($R^2$), and Mean Absolute Error (MAE).
-    * The final model selection balanced accuracy with interpretability to provide practical insights.
+## Project Structure
 
-## Results and Insights
+airbnb-price-prediction/
+│
+├── app/
+│ └── app.py # Streamlit application
+│
+├── data/
+│ ├── processed/ # Processed training and test datasets
+│ └── raw/ # Raw data (optional if using external storage)
+│
+├── models/
+│ └── final_catboost_model.cbm # Trained model (ignored in GitHub due to size)
+│
+├── src/
+│ ├── init.py
+│ ├── config.py # File paths and constants
+│ ├── data_prep.py # Preprocessing script
+│ ├── features.py # Feature processing helpers
+│ ├── pipelines.py # Model and pipeline definitions
+│ ├── train.py # Model training script
+│ ├── evaluate.py # Evaluation script
+│ └── predict.py # Prediction logic for Streamlit
+│
+├── requirements.txt # Python dependencies
+└── README.md # Project documentation
 
-* The `log_price` distribution showed a normal distribution, indicating predictable pricing.
-* The chosen regression model effectively predicts Airbnb listing prices based on the engineered features.
-* Key factors influencing pricing were identified, providing actionable insights for hosts to optimize their listings.
+
+---
+
+## How to Run the Project Locally
+
+### 1. Create a virtual environment
+
+python -m venv venv
+source venv/bin/activate # Mac/Linux
+venv\Scripts\activate # Windows
+
+
+### 2. Install dependencies
+
+pip install -r requirements.txt
+
+
+### 3. Prepare data  
+If raw data is stored in a Drive link, ensure `TRAIN_PATH` and `TEST_PATH` are correctly set in `src/config.py`.
+
+Then run:
+
+python -m src.data_prep
+
+
+### 4. Train model
+
+python -m src.train
+
+
+### 5. Evaluate model
+
+python -m src.evaluate
+
+
+### 6. Run Streamlit App
+
+streamlit run app/app.py
+
+
+---
+
+## Live Demo (Working Application)
+
+The deployed project is available here:
+
+**https://airbnb-price-prediction-5393yqisxazm7sns7ykknz.streamlit.app/?theme=dark**
+
+You can interact with the model, enter property details, and instantly receive a price prediction.
+
+---
+
+## Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- CatBoost
+- Scikit-learn
+- Streamlit
+- Joblib
+- GitHub + Streamlit Cloud for deployment
+
+---
+
+## Notes
+
+- The `/models` folder is excluded from GitHub due to file size; the model is loaded directly in the deployed version.
+- The dataset used is large and not stored in the repository to avoid exceeding GitHub's storage limits.
+
+---
+
+## Conclusion
+
+This project demonstrates a complete machine-learning pipeline, from preprocessing large Airbnb datasets to deploying a production-ready prediction app.  
+All steps—cleaning, modeling, evaluation, and deployment—are automated and reproducible.
