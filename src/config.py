@@ -3,7 +3,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Your raw Excel file
-RAW_DATA_PATH = os.path.join(BASE_DIR, "data", "raw", "Airbnb_data.xlsx")
+RAW_DATA_URL = "https://docs.google.com/spreadsheets/d/182TQXHhwLbBa-Z3PGxPTGqny_v3iIwKP/export?format=csv"
+
 
 # Processed CSVs
 TRAIN_PATH = os.path.join(BASE_DIR, "data", "processed", "train.csv")
