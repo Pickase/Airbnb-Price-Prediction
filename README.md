@@ -47,6 +47,7 @@ Evaluation metrics (on test data):
 
 These values indicate that the model has a strong ability to estimate log-prices with high accuracy.
 
+'''
 
 airbnb-price-prediction/
 |-- app/
@@ -70,6 +71,7 @@ airbnb-price-prediction/
 |-- requirements.txt
 |-- README.md
 
+'''
 
 ## How to Run the Project Locally
 
@@ -144,5 +146,6 @@ You can interact with the model, enter property details, and instantly receive a
 
 This project demonstrates a complete machine-learning pipeline, from preprocessing large Airbnb datasets to deploying a production-ready prediction app.  
 All steps—cleaning, modeling, evaluation, and deployment—are automated and reproducible.
+
 
 
