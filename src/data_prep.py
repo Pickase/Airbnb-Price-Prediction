@@ -1,7 +1,9 @@
 import pandas as pd
+import requests
+from io import StringIO
 from sklearn.model_selection import train_test_split
 
-from .config import RAW_DATA_PATH, TRAIN_PATH, TEST_PATH, TARGET, TEST_SIZE, RANDOM_STATE
+from .config import RAW_DATA_URL, TRAIN_PATH, TEST_PATH, TARGET, TEST_SIZE, RANDOM_STATE
 
 FEATURES = [
     "accommodates",
@@ -14,8 +16,9 @@ FEATURES = [
 
 def prepare_data():
     # Load raw Excel (NOT processed old CSV)
-    df = pd.read_excel(RAW_DATA_PATH)
-
+    resp = requests.get(RAW_DATA_URL)
+    resp.raise_for_status()
+    df = pd.read_csv(StringIO(resp.text))
     # Select only needed columns
     df = df[FEATURES + [TARGET]].dropna()
 
