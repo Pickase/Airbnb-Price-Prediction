@@ -40,12 +40,12 @@ with st.form("prediction_form"):
 
     with col1:
         accommodates = st.number_input("Accommodates", 1, 20)
-        bathrooms = st.number_input("Bathrooms", 0.0, 10.0, step=0.5)
+        bathrooms = st.number_input("Bathrooms", 0, 10, step=0.5)
         beds = st.number_input("Beds", 0, 20)
 
     with col2:
-        bathrooms = st.number_input(
-    "Bathrooms",
+        bedrooms = st.number_input(
+    "Bedrooms",
     min_value=0,
     max_value=10,
     step=1
